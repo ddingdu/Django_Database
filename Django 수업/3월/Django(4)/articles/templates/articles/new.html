@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>글 작성</h1>
+
+<form action="{% url 'articles:create' %}" method="POST">
+{% csrf_token %}
+
+<label for="title">제목</label>
+<input type="text" id="title" name="title">
+<hr>
+<label for="content">내용</label>
+<input type="content" id="content" name="content" cols="30" rows="10">
+<hr>
+<input type="submit" class="btn btn-primary" name="저장">
+</form>
+
+{% endblock content %}

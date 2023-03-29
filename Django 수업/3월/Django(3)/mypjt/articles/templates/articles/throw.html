@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Throw</h1>
+    <form action="{% url 'articles:catch' %}" method="GET">
+
+    {% comment %} for랑 id를 같은 값으로 {% endcomment %}
+    <label for="message">보내고 싶은 데이터 적기</label>
+    <input type="text" id="message" name="message">
+    
+    {% comment %} 제출버튼 {% endcomment %}
+    <input type="submit"> 
+
+    </form>
+{% endblock content %}
