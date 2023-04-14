@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <h1>INDEX</h1>
+  <a href="{% url 'movies:create' %}" class="btn btn-outline-dark btn-sm">CREATE</a>
+  <hr>
+  {% for movie in movies %}
+    <a href="{% url 'movies:detail' movie.pk %}">{{ movie.title }}</a>
+
+    <form action="{% url 'movies:likes' movie.pk %}" method="POST">
+      {% csrf_token %}
+      {% if request.user in movie.like_users.all %}
+      {% comment %} 좋아요 취소 {% endcomment %}
+      <button class="fa-solid fa-heart" style="border:none; color:#000000;" > 좋아요 취소</button>
+      {% else %}
+      {% comment %} 좋아요 {% endcomment %}
+      <button class="fa-solid fa-heart" style="border:none; color:#ff0000;" > like</button>
+      {% endif %}
+      <br>
+      <span>{{ movie.like_users.count }} 명이 이 글을 좋아합니다. </span>
+      
+    </form>
+    <hr>
+  {% endfor %}
+{% endblock %}

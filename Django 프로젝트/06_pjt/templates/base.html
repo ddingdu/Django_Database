@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"/>
+  <title>Document</title>
+</head>
+<body>
+
+
+  {% comment %} <div class="container">
+      {% if request.user.is_authenticated %}
+      <br>
+        <h3><b>Hello, {{ user }}</b></h3>
+        <br>  
+        <a href="{% url 'accounts:profile' user.username %}" class="btn btn-light">My Profile</a>
+        <br>  
+        <div class="d-flex">
+          <a href="{% url 'accounts:update' %}"class="btn btn-light btn-sm">회원 정보 수정</a>
+          <br>
+          <form action="{% url 'accounts:logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="로그아웃" class="btn btn-secondary btn-sm">
+          </form>
+          <br>
+          <form action="{% url 'accounts:delete' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="회원탈퇴" class="btn btn-danger btn-sm">
+          </form>
+         </div>
+      {% else %}
+      <br>
+        <a href="{% url 'accounts:login' %}" class="btn btn-primary btn-sm">로그인</a>
+        <a href="{% url 'accounts:signup' %}" class="btn btn-secondary btn-sm">회원가입</a>
+      {% endif %}
+  <hr>
+    {% block content %}
+    {% endblock content %}
+  </div> {% endcomment %}
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'movies:index' %}"> Home </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        
+        {% if request.user.is_authenticated %}
+        <li class="nav-item m-auto">  Hello, {{ user }} ! </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:profile' user.username %}">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:update' %}">회원 정보 수정</a>
+        </li>
+
+        <li class="nav-item">
+          <form action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <input class="nav-link" type="submit" style="border:none" value="로그아웃">
+        </form>
+        </li>
+
+        <li class="nav-item">
+          <form action="{% url 'accounts:delete' %}" method="post">
+            {% csrf_token %}
+            <input class="nav-link" type="submit" style="border:none" value="회원탈퇴">
+        </form>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:login' %}">로그인</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'accounts:signup' %}">회원가입</a>
+        </li>
+    {% endif %}
+      </ul>
+    </div>
+  </nav>
+      {% block content %}{% endblock content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
