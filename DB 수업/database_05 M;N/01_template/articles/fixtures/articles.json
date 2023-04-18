@@ -1,0 +1,33 @@
+[
+{
+    "model": "articles.article",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "title": "코코 제목",
+        "content": "내용",
+        "image": "",
+        "created_at": "2023-04-12T00:08:55.418Z",
+        "updated_at": "2023-04-12T00:29:26.368Z",
+        "like_users": [
+            1,
+            2
+        ]
+    }
+},
+{
+    "model": "articles.article",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "title": "에이든 제목",
+        "content": "에이든 내용",
+        "image": "",
+        "created_at": "2023-04-12T00:09:20.377Z",
+        "updated_at": "2023-04-12T00:09:20.377Z",
+        "like_users": [
+            1
+        ]
+    }
+}
+]
